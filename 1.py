@@ -27,4 +27,4 @@ def quick_sort(list_in,i_left,i_right,k):
      i_left = 0
      i_right = len(ll)-1
      k = 3
-     print(quick_sort(ll,i_left,i_right,k):)
+     print(quick_sort(ll,i_left,i_right,k))
