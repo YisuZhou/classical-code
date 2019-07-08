@@ -10,18 +10,25 @@ def partition(list_in,i_left,i_right):
     return i_next
     
 def quick_sort(list_in,i_left,i_right,k):
-    if k < 0:
-        return None
-    elif k > len(list_in) :
-        return None
-    i_mid = partition(list_in,i_left,i_right)
-
-    if i_mid == k:
-        print list_in[i_mid]
-    elif i_mid > k:
-        quick_sort(list_in,i_left,i_mid-1,k)
-    else:
-        quick_sort(list_in,i_mid+1,i_right,k)
+    if i_left < i_right:
+        #  第k个，前k个无序
+        i_mid = partition(list_in,i_left,i_right)
+        if i_mid == k:
+            return
+        elif i_mid > k:
+            quick_sort(list_in,i_left,i_mid-1,k)
+        else:
+            quick_sort(list_in,i_mid+1,i_right,k)
+        #  前k个有序
+        i_mid = partition(list_in,i_left,i_right)
+        if i_mid == k:
+            quick_sort(list_in,i_left,i_mid-1,k)
+        elif i_mid >= k:
+            quick_sort(list_in,i_left,i_mid-1,k)
+        else:
+            quick_sort(list_in,i_left,i_mid-1,k)
+            quick_sort(list_in,i_mid+1,i_right,k)
+        
         
  if __name__ == '__main__':
      ll = [1,4,7,2,8,5]
@@ -29,3 +36,4 @@ def quick_sort(list_in,i_left,i_right,k):
      i_right = len(ll)-1
      k = 3
      quick_sort(ll,i_left,i_right,k)
+     print()
