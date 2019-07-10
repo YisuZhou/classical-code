@@ -1,0 +1,12 @@
+![softmax公式]()
+
+实现
+import numpy as np
+def softmax(X):
+    X = X - np.max(X)
+    return np.exp(X) / np.sum(np.exp(X))   # 防止数值太大，溢出
+print(softmax([1,2,-3]))
+
+为什么用softmax，而不直接用标准化将确定范围的值转换到区间[0,1]当中呢？
+如果计算结果里面有很大的值（正、负都有），通过normalization会有部分数会变得非常小。
+Softmax相较于normalization能够更好的区分不同类别的计算结果（结果区别比较小）
