@@ -40,8 +40,8 @@ def FindNumbersWithSum2(self, array, tsum):
                 ans = [array[i_left],array[i_right]]
             i_right -= 1
         else:
-            if tmux - array[i_left] - array[i_right] < gap_min:
-                gap_min = tmux - array[i_left] - array[i_right]
+            if tsum - array[i_left] - array[i_right] < gap_min:
+                gap_min = tsum - array[i_left] - array[i_right]
                 ans = [array[i_left],array[i_right]]
             i_left += 1
    return ans
