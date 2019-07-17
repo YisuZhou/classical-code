@@ -1,3 +1,4 @@
+'''
 动态规划  
 从右往左，看当前位置右边的那些所有最长递减子序列里的最大值有没有比当前位置小的  
 d[i]=max{d[k]| i<k<=n 且a[i]>a[k]} +1  
@@ -10,6 +11,7 @@ https://blog.csdn.net/stormbjm/article/details/8919484
 https://blog.csdn.net/weixin_41162823/article/details/81901569  
   
 下面实现一个无优化的（没有完善，其实过程中应该找到所有满足条件的子序列）  
+'''
 def  LDS(array):  
     n = len(array)  
     d = [1]*n  #存储包含当前元素的子序列长度  
