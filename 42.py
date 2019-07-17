@@ -3,13 +3,11 @@
 从右往左，看当前位置右边的那些所有最长递减子序列里的最大值有没有比当前位置小的  
 d[i]=max{d[k]| i<k<=n 且a[i]>a[k]} +1  
 边界i == n 的时候是1  
-  
 无优化算法，O(n^2)  
 https://blog.csdn.net/stormbjm/article/details/8919484  
 优化算法，优化的是找剩下来的里面的那个过程  
 对于序列A中的每个元素A[i]，我们都可以快速找到“小于A[i]的所有元素中F的值最大的那个”，二分，O(nlogn)  
 https://blog.csdn.net/weixin_41162823/article/details/81901569  
-  
 下面实现一个无优化的（没有完善，其实过程中应该找到所有满足条件的子序列）  
 '''
 def  LDS(array):  
@@ -25,7 +23,7 @@ def  LDS(array):
             mmax, mindex = search(array,d,i+1,len(array))
             d[i] = mmax+1
             p[i] = mindex
-    #
+    # 
     max_len = max(d)
     # 最长的可能有几个
     max_start_list = []
@@ -42,7 +40,6 @@ def  LDS(array):
         ans.append(array[i_next])
         ans_all.append(ans)
     return ans_all
-
 def search(array,d,start,end):  # 待完善，应该返回两个列表，如果满足条件的有多个
     mmax = 0
     mindex = -1
@@ -52,9 +49,3 @@ def search(array,d,start,end):  # 待完善，应该返回两个列表，如果�
                 mmax = d[i]
                 mindex = i
     return mmax,mindex
-
-
-if __name__ == '__main__':
-    l = [9,8, 2, 1, 7, 5, 3, 4, 3, 2, 1]
-    ans = LDS(l)
-    print(ans)
