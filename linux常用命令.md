@@ -15,7 +15,13 @@ find . | xargs grep string #查找当前目录下文件内容包含字符串stri
 在 find . | grep string中虽然看似和find . | xargs grep string差不多，但是实际上还是有区别的。  
 find .得到的结果是一串文件名集合，如果直接传递给grep的话，grep会把这些文件名看作一些无意义的字符串来处理。  
 但是传递给xargs，他会把他当作一个有意义的文件来处理。）  
+(xargs会将管道命令符|前面的内容，当做参数传入后面的命令，这样grep找的就是参数代表的文件，  
+而没有args的话，会将|前面的输出内容，  
+因此find . -name "aa*" |  grep  hello  找不到文件名包含hello的，因此输出为空，  
+find . -name "aa*" | xargs grep  么 -ls   则输出的是文件内容包含“么”的文件  
+find . -name "aa*" | xargs grep hello  -ls 则输出的是文件内容 包含“hello”的aa.json文件。)  
 按照更新时间查找：  
+              -cmin 单位是分
 find   /usr   -mtime  -4   查找文件更新日时在距现在时刻4天以内的文件  
 find   /usr  -mtime  +4    查找文件更新日时在距现在时刻5天以上的文件  
 find   /usr   -mtime   4   查找文件更新日时在距现在时刻4天以上5天以内的文件  
